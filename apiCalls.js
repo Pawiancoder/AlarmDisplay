@@ -1,4 +1,5 @@
-let ip = "192.168.2.50"
+const ip = "192.168.2.50";
+
 const apiUrl = `http://${ip}:5000/api/alarm-api`;
 
 function sendGETrequest() {
