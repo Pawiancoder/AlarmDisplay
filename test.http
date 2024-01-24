@@ -1,0 +1,10 @@
+POST http://192.168.2.50:5000/api/alarm-api
+Content-Type: application/json
+
+{
+    "title": "Kleinbrand",
+    "vehicles": ["REI44"],
+    "category": "Brandalarm",
+    "sound": false,
+    "type": 2
+}

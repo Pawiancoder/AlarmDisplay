@@ -1,0 +1,115 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: gray;
+    margin: 0;
+    overflow: hidden;
+    /* Verhindert das Scrollen der Seite */
+}
+
+.vehicleList {
+    margin-left: 300px;
+    margin-top: 140px;
+}
+
+.vehicleList div {
+    width: 250px;
+    height: 250px;
+    background-color: white;
+    display: inline-block;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    margin-left: 55px;
+    margin-top: 50px;
+}
+
+.vehicleList div p {
+    margin-left: 20px;
+    margin-bottom: 35px;
+}
+
+.vehicleList div img {
+    max-width: 100%;
+    height: auto;
+}
+
+#fme-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: gray;
+    border-bottom: 2px solid gray;
+    padding: 20px;
+    box-shadow: 0 0 10px gray;
+    z-index: 1;
+    /* Stellt sicher, dass es über dem Inhalt liegt */
+}
+
+#display {
+    font-size: 24px;
+    padding: 10px;
+    border: 1px solid gray;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.blink {
+    animation: blink 1s infinite;
+}
+
+
+@keyframes blink {
+
+    0%,
+    50%,
+    100% {
+        opacity: 1;
+    }
+
+    25%,
+    75% {
+        opacity: 0;
+    }
+}
+
+@keyframes blink2 {
+
+    0%,
+    100% {
+        background-color: orange;
+    }
+
+    50% {
+        background-color: white;
+    }
+}
+
+.blink2 {
+    animation: blink2 3s infinite;
+}
+
+/* Stile für das Popup-Fenster */
+.alarm_dialog {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+/* Optional: Stile für den Overlay-Hintergrund */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}

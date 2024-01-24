@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alarmdisplay</title>
+    <audio src="./alarmgong.wav" id="alarmgong"></audio>
+    <audio src="./alarmGong.mp3" id="gong"></audio>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <div id="fme-container">
+        <div id="display">
+            <h1 id="alarm_header">Kein Alarm</h1>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="vehicleList">
+        <div id="REI191">
+            <p>
+                REI19/1
+            </p>
+            <p>
+                MTW1
+            </p>
+            <img src="../veh_img/MTW1.jpg">
+        </div>
+        <div id="REI192">
+            <p>
+                REI19/2
+            </p>
+            <p>
+                MTW2
+            </p>
+            <img src="../veh_img/MTW2.jpg">
+        </div>
+        <div id="REI46">
+            <p>
+                REI46
+            </p>
+            <p>
+                HLF
+            </p>
+            <img src="../veh_img/HLF.jpg">
+        </div>
+        <div id="REI44">
+            <p>
+                REI44
+            </p>
+            <p>
+                LF16
+            </p>
+            <img src="../veh_img/LF16.jpg">
+        </div>
+        <div id="REI74">
+            <p>
+                REI74
+            </p>
+            <p>
+                GW-L2
+            </p>
+            <img src="../veh_img/GW-L2.jpg">
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <script src="./alarmDisplay.js"></script>
+    <script src="./tts.js"></script>
+    <script src="./apiCalls.js"></script>
+    <!--TODO: HTML für Alarm-erstellung-->
+
+</body>
+
+</html>
