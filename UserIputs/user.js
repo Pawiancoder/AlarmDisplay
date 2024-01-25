@@ -102,7 +102,7 @@ function getJsonData() {
             }
         }
     }
-    alert("Alarmiert! Bitte am Monitor nach Alarmierung zurücksetzen und dann bei Bedarf erst erneut alarmieren!");
+    alert("Alarmiert! Bitte am Monitor nach der Alarmierung zurücksetzen und dann bei Bedarf erst erneut alarmieren!");
     sendPostRequest(jsonData);
     resetFields();
 }
