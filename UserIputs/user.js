@@ -24,6 +24,7 @@ const gongtype_thl = document.getElementById("thl_gong");
 const checkboxes_veh = [rei19_1, rei19_2, rei44, rei46, rei174];
 const checkboxes_alarmTypes = [brandalarm, thl];
 const checkboxes_gong = [gongtype_fire, gongtype_thl];
+const inputCheckboxes = [rei19_1, rei19_2, rei44, rei46, rei174, brandalarm, thl, gongtype_fire, gongtype_thl];
 //TODO soundRequired implementieren!
 
 //Eventlistener
@@ -54,9 +55,9 @@ function getJsonData() {
                 if (checkedGongTypes.length > 1) {
                     alert("Bitte maximal einen Gongtypen auswählen!");
                 } else {
+                    let kategorie = checkedAlarmBoxes[0].toString();
                     if (soundRequired.checked) {
                         //gong an
-                        let kategorie = checkedAlarmBoxes[0].toString();
                         console.log("K: ", kategorie);
                         if (gongtype_fire.checked) {
                             jsonData = {
@@ -101,7 +102,9 @@ function getJsonData() {
             }
         }
     }
+    alert("Alarmiert! Bitte am Monitor nach Alarmierung zurücksetzen und dann bei Bedarf erst erneut alarmieren!");
     sendPostRequest(jsonData);
+    resetFields();
 }
 
 function getCheckedBoxes(type) { //types: vehicles; alarmTypes; gong
@@ -153,4 +156,12 @@ function sendPostRequest(jsonData) {
         .catch(error => {
             console.error('Fehler beim API-Aufruf:', error);
         });
+}
+
+
+function resetFields() {
+    inputCheckboxes.forEach(checkBox => {
+        if (checkBox.checked) checkBox.checked = false
+    })
+    keyWordField.value = "";
 }

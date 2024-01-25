@@ -13,12 +13,11 @@
     <br>
     <div class="form">
         <label for="In_keyword">Stichwort:</label>
-        <input type="text" name="stichwort" id="In_keyword">
-        <br>
-        <br>
+        <input type="text" name="stichwort" id="In_keyword" placeholder="BMA">
         <br>
         <br>
         <div class="vehicles">
+            <h3><u><b>Ausrückende Fahrzeuge</b></u></h3>
             <label for="REI191">Reilingen 19/1 (MTW 1):</label>
             <input type="checkbox" name="REI19/1" id="REI191">
             <br>
@@ -36,7 +35,7 @@
             <br>
         </div>
         <br>
-        <br>
+        <h3><u><b>Alarmarten:</b></u></h3>
         <div class="types">
             <label for="fire">Brandalarm:</label>
             <input type="checkbox" name="Brandalarm" id="fire">
@@ -45,7 +44,7 @@
             <input type="checkbox" name="THL" id="thl">
         </div>
         <br>
-        <br>
+        <h3><u><b>Weitere Einstellungen (Gong falls Mikro verfügbar am Monitor)</b></u></h3>
         <div class="options">
             <label for="alarm_sound">Gong + Ansage am Monitor:</label>
             <input type="checkbox" name="alarm_sound" id="alarm_sound">
@@ -61,8 +60,6 @@
             <label for="thl_gong">THL Gong:</label>
             <input type="checkbox" name="thl_gong" id="thl_gong">
         </div>
-        <br>
-        <br>
         <br>
         <br>
         <button id="alarm_in_btn">Alarmieren</button>
