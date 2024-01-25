@@ -2,9 +2,9 @@ POST http://192.168.2.50:5000/api/alarm-api
 Content-Type: application/json
 
 {
-    "title": "Kleinbrand",
-    "vehicles": ["REI44"],
-    "category": "Brandalarm",
+    "title": "Vermisste Person",
+    "vehicles": ["REI46", "REI19/1", "REI19/2", "REI44"],
+    "category": "THL",
     "sound": false,
-    "type": 2
+    "type": 1
 }

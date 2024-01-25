@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einsatzerstellung</title>
+</head>
+
+<body>
+    <h1><u><b>Alarmierungsfenster</b></u></h1>
+    <br>
+    <br>
+    <div class="form">
+        <label for="In_keyword">Stichwort:</label>
+        <input type="text" name="stichwort" id="In_keyword">
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="vehicles">
+            <label for="REI191">Reilingen 19/1 (MTW 1):</label>
+            <input type="checkbox" name="REI19/1" id="REI191">
+            <br>
+            <label for="REI192">Reilingen 19/2 (MTW 2):</label>
+            <input type="checkbox" name="REI19/2" id="REI192">
+            <br>
+            <label for="REI44">Reilingen 44 (LF16):</label>
+            <input type="checkbox" name="REI44" id="REI44">
+            <br>
+            <label for="REI46">Reilingen 46 (HLF):</label>
+            <input type="checkbox" name="REI46" id="REI46">
+            <br>
+            <label for="REI74">Reilingen 74 (GWL-2):</label>
+            <input type="checkbox" name="REI74" id="REI74">
+            <br>
+        </div>
+        <br>
+        <br>
+        <div class="types">
+            <label for="fire">Brandalarm:</label>
+            <input type="checkbox" name="Brandalarm" id="fire">
+            <br>
+            <label for="thl">Technische Hilfeleistung:</label>
+            <input type="checkbox" name="THL" id="thl">
+        </div>
+        <br>
+        <br>
+        <div class="options">
+            <label for="alarm_sound">Gong + Ansage am Monitor:</label>
+            <input type="checkbox" name="alarm_sound" id="alarm_sound">
+        </div>
+        <br>
+        <br>
+        <div class="gongTypes">
+            <p><b><u>Wenn kein Gong ausgewählt ist, wird immer der Gong zum Alarm abgespielt, falls aktiviert!</u></b>
+            </p>
+            <label for="fire_gong">Gong Brandalarm:</label>
+            <input type="checkbox" name="fire_gong" id="fire_gong">
+            <br>
+            <label for="thl_gong">THL Gong:</label>
+            <input type="checkbox" name="thl_gong" id="thl_gong">
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <button id="alarm_in_btn">Alarmieren</button>
+    </div>
+    <script src="./user.js"></script>
+</body>
+
+</html>
