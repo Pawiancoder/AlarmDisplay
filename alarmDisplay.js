@@ -105,7 +105,7 @@ function resetAlarm() {
                 displayElement.style.color = "black";
             }, 2000);
         }, 3000);
-        // activeAlert = false; //TODO EINBINDEN PER API CALL
+        activeAlert = false;
     }, alarmZeit);
     setTimeout(function () {
         location.reload();
