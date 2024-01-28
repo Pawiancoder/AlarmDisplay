@@ -81,6 +81,12 @@ function triggerAlarm(title, vehicles, kategorie, sound, type) {
                 }
             }
         }, 1000);
+
+        setTimeout(function () {
+            if (activeAlert) {
+                resetAlarm();
+            }
+        }, 600000) //600 000 ms => 10 min bis reset
     } else {
         alert("Der Alarmtitel oder die Fahrzeugliste darf nicht leer sein!");
         throw new Error("AlarmdispError: Text / Vehiclelist is empty!");
