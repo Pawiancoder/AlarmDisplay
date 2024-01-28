@@ -2,8 +2,8 @@ const ip = "192.168.2.50";
 
 const apiUrl = `http://${ip}:5000/api/alarm-api`;
 
-function sendGETrequest() {
-    if (!activeAlert) {
+function sendGETrequest(reset) {
+    if (!activeAlert && !reset) {
         console.log("CALLED!");
         fetch(apiUrl)
             .then(response => {
@@ -35,8 +35,32 @@ function sendGETrequest() {
             .catch(error => {
                 console.log(error);
             })
+    } else if (reset) {
+        jsonData = {
+            title: "RESETALARM",
+            vehicles: ["REI191"],
+            category: "THL",
+            sound: false,
+            type: 1,
+            status: true
+        }
+        fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(jsonData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Antwort verarbeiten
+                console.log(data.message);
+            })
+            .catch(error => {
+                console.error('Fehler beim API-Aufruf:', error);
+            });
     }
 }
 
 
-setInterval(sendGETrequest, 10000);
+setInterval(sendGETrequest(false), 10000);

@@ -12,6 +12,8 @@ const rei44 = document.getElementById("REI44");
 const rei46 = document.getElementById("REI46");
 const rei174 = document.getElementById("REI74");
 
+const resetCheckbox = document.getElementById("reset");
+
 //checkboxes alarmtype, gong, gongtype
 const brandalarm = document.getElementById("fire");
 const thl = document.getElementById("thl");
@@ -42,9 +44,20 @@ function getJsonData() {
     let checkedVehicles = getCheckedBoxes("vehicles");
     let checkedGongTypes = getCheckedBoxes("gong");
     //Code
-    if (checkedAlarmBoxes.length >= 2 || checkedAlarmBoxes.length == 0) {
+    if (checkedAlarmBoxes.length >= 2 || checkedAlarmBoxes.length == 0 && !resetCheckbox.checked) {
         alert("Bitte maximal eine Alarmart auswählen!");
         throw new Error("Bitte nur eine Alarmart auswählen!");
+    } else if (resetCheckbox.checked) {
+        //reset
+        jsonData =
+        {
+            title: "RESET",
+            vehicles: ["REI44"],
+            category: "THL",
+            sound: false,
+            type: 1,
+            status: true
+        }
     } else {
         if (checkedVehicles.length == 0) {
             alert("Es wurden keine Fahrzeuge ausgewählt!");
@@ -65,7 +78,8 @@ function getJsonData() {
                                 vehicles: checkedVehicles,
                                 category: kategorie,
                                 sound: true,
-                                type: 2
+                                type: 2,
+                                status: false
                             }
                         } else {
                             jsonData = {
@@ -73,7 +87,8 @@ function getJsonData() {
                                 vehicles: checkedVehicles,
                                 category: kategorie,
                                 sound: true,
-                                type: 1
+                                type: 1,
+                                status: false
                             }
                         }
                     } else {
@@ -84,7 +99,8 @@ function getJsonData() {
                                 vehicles: checkedVehicles,
                                 category: kategorie,
                                 sound: false,
-                                type: 2
+                                type: 2,
+                                status: false
                             }
 
                         } else {
@@ -94,7 +110,8 @@ function getJsonData() {
                                 vehicles: checkedVehicles,
                                 category: kategorie,
                                 sound: false,
-                                type: 1
+                                type: 1,
+                                status: false
                             }
                         }
                     }
