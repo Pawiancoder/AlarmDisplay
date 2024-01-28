@@ -3,8 +3,8 @@ const ip = "192.168.2.50";
 const apiUrl = `http://${ip}:5000/api/alarm-api`;
 
 function sendGETrequest(reset) {
-    if (!activeAlert && !reset) {
-        console.log("CALLED!");
+    console.log("CALLED!");
+    if (!activeAlert) {
         fetch(apiUrl)
             .then(response => {
                 if (!response.ok) {
@@ -14,9 +14,9 @@ function sendGETrequest(reset) {
             })
             .then(data => {
                 //console.log(data.data[0]);
-                // console.log("DATA: ", data);
-                if (data.data == "Error_no_data" || data.length === 0) {
-                    //!console.log("Im moment liegt kein Einsatz vor");
+                console.log("DATA: ", data.data.data);
+                if (data.data.error == "Error_no_data" || data.length === 0) {
+                    console.log("Im moment liegt kein Einsatz vor");
                     return;
                 } else {
                     console.log("Einsatz!");
@@ -35,32 +35,42 @@ function sendGETrequest(reset) {
             .catch(error => {
                 console.log(error);
             })
-    } else if (reset) {
-        jsonData = {
-            title: "RESETALARM",
-            vehicles: ["REI191"],
-            category: "THL",
-            sound: false,
-            type: 1,
-            status: true
+    } else {
+        console.log("KEK");
+        if (reset) {
+            jsonData = {
+                title: "RESETALARM",
+                vehicles: ["REI191"],
+                category: "THL",
+                sound: false,
+                type: 1,
+                status: true
+            }
+        } else {
+            jsonData = {
+                title: "RESETALARM",
+                vehicles: ["REI19/1"],
+                category: "THL",
+                sound: false,
+                type: 1,
+                status: false
+            }
         }
-        fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(jsonData)
-        })
+        fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
                 // Antwort verarbeiten
-                console.log(data.message);
+                console.log("ResetDATA: ", data.data.data);
+                if (data.data.data === false) {
+                    //console.log("Monitor wird leer gemacht");
+                    resetAlarm();
+                }
             })
             .catch(error => {
                 console.error('Fehler beim API-Aufruf:', error);
-            });
+            })
     }
 }
 
 
-setInterval(sendGETrequest(false), 10000);
+setInterval(sendGETrequest, 10000);

@@ -48,7 +48,7 @@ function feuerwehrTTS(title, units, type) {
 }
 
 function checkKeyword(txt) {
-    let shortWordsArr = ["BMA", "Brandmeldeanlage", "RD", "Rettungsdienst", "St.", "Sankt", "VU", "Verkehrsunfall"]; // "Abkürzung", "Bedeutung"
+    let shortWordsArr = ["BMA", "Brandmeldeanlage ausgelößt", "RD", "Rettungsdienst", "St.", "Sankt", "VU", "Verkehrsunfall"]; // "Abkürzung", "Bedeutung"
     let returnStr = "";
     let checkArr = txt.split(" ");
 
