@@ -4,7 +4,7 @@ const apiUrl = `http://${ip}:5000/api/alarm-api`;
 
 function sendGETrequest(reset) {
     console.log("CALLED!");
-    if (!activeAlert) {
+    if (!activeAlert && !reset) {
         fetch(apiUrl)
             .then(response => {
                 if (!response.ok) {
@@ -36,8 +36,9 @@ function sendGETrequest(reset) {
                 console.log(error);
             })
     } else {
-        console.log("KEK");
+        console.log("KEKLOL1");
         if (reset) {
+            console.log("KEKLOL2");
             jsonData = {
                 title: "RESETALARM",
                 vehicles: ["REI191"],
