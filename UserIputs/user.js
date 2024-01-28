@@ -20,13 +20,10 @@ const thl = document.getElementById("thl");
 
 const soundRequired = document.getElementById("alarm_sound");
 
-const gongtype_fire = document.getElementById("fire_gong");
-const gongtype_thl = document.getElementById("thl_gong");
 
 const checkboxes_veh = [rei19_1, rei19_2, rei44, rei46, rei174];
 const checkboxes_alarmTypes = [brandalarm, thl];
-const checkboxes_gong = [gongtype_fire, gongtype_thl];
-const inputCheckboxes = [rei19_1, rei19_2, rei44, rei46, rei174, brandalarm, thl, gongtype_fire, gongtype_thl];
+const inputCheckboxes = [rei19_1, rei19_2, rei44, rei46, rei174, brandalarm, thl];
 //TODO soundRequired implementieren!
 
 //Eventlistener
@@ -42,13 +39,13 @@ function getJsonData() {
     let jsonData = [];
     let checkedAlarmBoxes = getCheckedBoxes("alarmTypes");
     let checkedVehicles = getCheckedBoxes("vehicles");
-    let checkedGongTypes = getCheckedBoxes("gong");
+    let gongPlaceHoler = 0;
     //Code
     if (checkedAlarmBoxes.length >= 2 || checkedAlarmBoxes.length == 0 && !resetCheckbox.checked) {
         alert("Bitte maximal eine Alarmart auswählen!");
         throw new Error("Bitte nur eine Alarmart auswählen!");
     } else if (resetCheckbox.checked) {
-        //reset
+        //!reset
         jsonData =
         {
             title: "RESET",
@@ -65,8 +62,9 @@ function getJsonData() {
             if (keyWordField.value == "") {
                 alert("Es wurde kein Stichwort eingegeben!");
             } else {
-                if (checkedGongTypes.length > 1) {
-                    alert("Bitte maximal einen Gongtypen auswählen!");
+                if (gongPlaceHoler > 1) {
+                    alert("unerwarteter Fehler! Bitte den Entwickler informieren (Fehlercode: Maschin' kaputt!");
+                    throw new Error("user.js (UserScript) 0 > 1 is true geworden!");
                 } else {
                     let kategorie = checkedAlarmBoxes[0].toString();
                     if (soundRequired.checked) {
@@ -134,12 +132,6 @@ function getCheckedBoxes(type) { //types: vehicles; alarmTypes; gong
         })
     } else if (type == "alarmTypes") {
         checkboxes_alarmTypes.forEach(element => {
-            if (element.checked) {
-                returnArr.push(element.name);
-            }
-        })
-    } else if (type == "gong") {
-        checkboxes_gong.forEach(element => {
             if (element.checked) {
                 returnArr.push(element.name);
             }
