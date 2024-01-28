@@ -85,7 +85,7 @@ body {
 }
 
 .blink2 {
-    animation: blink2 3s infinite;
+    animation: blink2 1.5s infinite;
 }
 
 /* Stile für das Popup-Fenster */
