@@ -38,11 +38,17 @@ function getJsonData() {
     let jsonData = [];
     let DispatchedVehicles = [];
     let vehicleChecks = 0;
+    let useGong = document.getElementById("alarm_sound").checked;
 
     let vehicles = [];
     let checkedVehicles = document.querySelectorAll('.vehicles input[type="checkbox"]');
 
-    checkedVehicles.forEach(vehicle => { //Schaut, welche Fahrzeuge ausgewählt wurden
+    if (document.getElementById("In_keyword").value == "") {
+        alert("Bitte ein Stichwort eingeben!");
+        return;
+    }
+
+    checkedVehicles.forEach(vehicle => { //!Schaut, welche Fahrzeuge ausgewählt wurden
         if (vehicle.checked) {
             vehicleChecks++;
             DispatchedVehicles.push(vehicle.name);
@@ -51,23 +57,45 @@ function getJsonData() {
 
     if (vehicleChecks == 0) {
         alert("Fahrzeuge müssen ausgewählt werden!");
+        return;
     }
 
-    if (brandalarmState || thlState) { //Wenn nur eine Alarmart ausgewählt wurde geht es weiter
+    if (brandalarmState || thlState) { //!Wenn nur eine Alarmart ausgewählt wurde geht es weiter
         if (brandalarmState && thlState) {
             alert("Es darf nur eine Alarmart ausgewählt werden!");
+            return;
         }
     } else if (!brandalarmState && !thlState) {
         alert("Es wurde keine Alarmart ausgewählt!");
+        return;
     }
 
+    if (brandalarmState) {
+        jsonData = {
+            title: document.getElementById("In_keyword").value,
+            vehicles: DispatchedVehicles,
+            category: "Brandalarm",
+            sound: soundRequired,
+            type: 2,
+            status: false //true => reset // false => kein reset
+        }
+    } else if (thlState) {
+        jsonData = {
+            title: document.getElementById("In_keyword").value,
+            vehicles: DispatchedVehicles,
+            category: "THL",
+            sound: soundRequired,
+            type: 1,
+            status: false //true => reset // false => kein reset 
+        }
+    } else {
+        alert("Interner Fehler alarmart (weder brandalarmState noch thlstate sind true)!");
+        return;
+    }
 
-
-    /**
-     * alert("Alarmiert! Bitte am Monitor nach der Alarmierung zurücksetzen und dann bei Bedarf erst erneut alarmieren!");
+    alert("Alarmiert! Bitte am Monitor nach der Alarmierung zurücksetzen und dann bei Bedarf erst erneut alarmieren!");
     sendPostRequest(jsonData);
     resetFields();
-     */
 }
 
 
