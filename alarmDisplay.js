@@ -105,11 +105,12 @@ function resetAlarm() {
             setTimeout(function () {
                 displayElement.style.color = "black";
             }, 2000);
+            sendGETrequest(true);
         }, 3000);
-        activeAlert = false;
     }, alarmZeit);
     setTimeout(function () {
-        location.reload();
+        activeAlert = false;
+        //location.reload();
     }, alarmZeit + 7000); //Alarmzeit + 7 Sekunden (Zeit zum reseten vom Display dann reload der Seite)
 }
 
