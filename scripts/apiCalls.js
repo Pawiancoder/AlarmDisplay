@@ -64,8 +64,9 @@ function sendGETrequest(reset) {
             .then(response => response.json())
             .then(data => {
                 // Antwort verarbeiten
-                console.log("ResetDATA: ", data.data.data);
-                if (data.data.data === false) {
+                console.log("Error: " + data.error);
+                console.log("ResetDATA: ", data);
+                if (data.error == "Error_no_data") {
                     //console.log("Monitor wird leer gemacht");
                     resetAlarm();
                 }

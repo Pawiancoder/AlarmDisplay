@@ -18,13 +18,16 @@ const resetCheckbox = document.getElementById("reset");
 const brandalarm = document.getElementById("fire");
 const thl = document.getElementById("thl");
 
+const city = document.getElementById("city");
+const houseNumber = document.getElementById("houseNumber");
+const street = document.getElementById("street");
+
 const soundRequired = document.getElementById("alarm_sound");
 
 
 const checkboxes_veh = [rei19_1, rei19_2, rei44, rei46, rei174];
 const checkboxes_alarmTypes = [brandalarm, thl];
-const inputCheckboxes = [rei19_1, rei19_2, rei44, rei46, rei174, brandalarm, thl];
-//TODO soundRequired implementieren!
+const inputCheckboxes = [rei19_1, rei19_2, rei44, rei46, rei174, brandalarm, thl, resetCheckbox];
 
 //Eventlistener
 
@@ -33,72 +36,111 @@ alarmBtn.addEventListener("click", () => {
 })
 
 function getJsonData() {
-    let brandalarmState = document.getElementById("fire").checked;
-    let thlState = document.getElementById("thl").checked;
-    let jsonData = [];
-    let DispatchedVehicles = [];
-    let vehicleChecks = 0;
-    let useGong = document.getElementById("alarm_sound").checked;
-
+    let brandalarm = false;
+    let thl = false;
     let vehicles = [];
-    let checkedVehicles = document.querySelectorAll('.vehicles input[type="checkbox"]');
-
-    if (document.getElementById("In_keyword").value == "") {
-        alert("Bitte ein Stichwort eingeben!");
-        return;
-    }
-
-    checkedVehicles.forEach(vehicle => { //!Schaut, welche Fahrzeuge ausgewählt wurden
-        if (vehicle.checked) {
-            vehicleChecks++;
-            DispatchedVehicles.push(vehicle.name);
-        }
-    });
-
-    if (vehicleChecks == 0) {
-        alert("Fahrzeuge müssen ausgewählt werden!");
-        return;
-    }
-
-    if (brandalarmState || thlState) { //!Wenn nur eine Alarmart ausgewählt wurde geht es weiter
-        if (brandalarmState && thlState) {
-            alert("Es darf nur eine Alarmart ausgewählt werden!");
-            return;
-        }
-    } else if (!brandalarmState && !thlState) {
-        alert("Es wurde keine Alarmart ausgewählt!");
-        return;
-    }
-
-    if (brandalarmState) {
-        jsonData = {
-            title: document.getElementById("In_keyword").value,
-            vehicles: DispatchedVehicles,
-            category: "Brandalarm",
-            sound: soundRequired,
-            type: 2,
-            status: false //true => reset // false => kein reset
-        }
-    } else if (thlState) {
-        jsonData = {
-            title: document.getElementById("In_keyword").value,
-            vehicles: DispatchedVehicles,
+    let jsonData = [];
+    let checkedAlarmBoxes = getCheckedBoxes("alarmTypes");
+    let checkedVehicles = getCheckedBoxes("vehicles");
+    let gongPlaceHoler = 0;
+    //Code
+    if (checkedAlarmBoxes.length >= 2 || checkedAlarmBoxes.length == 0 && !resetCheckbox.checked) {
+        alert("Bitte maximal eine Alarmart auswählen!");
+        throw new Error("Bitte nur eine Alarmart auswählen!");
+    } else if (resetCheckbox.checked) {
+        //!reset
+        jsonData =
+        {
+            title: "RESET",
+            vehicles: ["REI44"],
             category: "THL",
-            sound: soundRequired,
+            sound: false,
             type: 1,
-            status: false //true => reset // false => kein reset 
+            status: true
         }
     } else {
-        alert("Interner Fehler alarmart (weder brandalarmState noch thlstate sind true)!");
-        return;
-    }
+        if (checkedVehicles.length == 0) {
+            alert("Es wurden keine Fahrzeuge ausgewählt!");
+        } else {
+            if (keyWordField.value == "") {
+                alert("Es wurde kein Stichwort eingegeben!");
+            } else {
+                if (gongPlaceHoler > 1) {
+                    alert("unerwarteter Fehler! Bitte den Entwickler informieren (Fehlercode: Maschin' kaputt!");
+                    throw new Error("user.js (UserScript) 0 > 1 is true geworden!");
+                } if (city.value == "" || street.value == "") {
+                    alert("Bitte eine Straße und Stadt eingeben!");
+                } else {
+                    console.log("City: " + city.value + " - Street: " + street.value);
+                    let kategorie = checkedAlarmBoxes[0].toString();
+                    if (soundRequired.checked) {
+                        //gong an
+                        console.log("K: ", kategorie);
+                        if (isNaN(houseNumber.value)) {
+                            alert("Die Hausnummer ist eine Zahl! (Bei bspw 2a nur 2)!");
+                            return;
+                        }
+                        let hausnummer = 0;
+                        hausnummer = houseNumber.value;
+                        if (brandalarm.checked) {
+                            jsonData = {
+                                title: keyWordField.value,
+                                vehicles: checkedVehicles,
+                                category: kategorie,
+                                sound: true,
+                                type: 2,
+                                status: false,
+                                street: street.value,
+                                city: city.value
+                            }
+                        } else {
+                            jsonData = {
+                                title: keyWordField.value,
+                                vehicles: checkedVehicles,
+                                category: kategorie,
+                                sound: true,
+                                type: 1,
+                                status: false,
+                                street: street.value,
+                                city: city.value
+                            }
+                        }
+                    } else {
+                        //gong aus
+                        if (gongtype_fire.checked) {
+                            jsonData = {
+                                title: keyWordField.value,
+                                vehicles: checkedVehicles,
+                                category: kategorie,
+                                sound: false,
+                                type: 2,
+                                status: false,
+                                street: street.value,
+                                city: city.value
+                            }
 
+                        } else {
+                            jsonData =
+                            {
+                                title: keyWordField.value,
+                                vehicles: checkedVehicles,
+                                category: kategorie,
+                                sound: false,
+                                type: 1,
+                                status: false,
+                                street: street.value,
+                                city: city.value
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     alert("Alarmiert! Bitte am Monitor nach der Alarmierung zurücksetzen und dann bei Bedarf erst erneut alarmieren!");
     sendPostRequest(jsonData);
     resetFields();
 }
-
-
 
 function getCheckedBoxes(type) { //types: vehicles; alarmTypes; gong
     let returnArr = [];
