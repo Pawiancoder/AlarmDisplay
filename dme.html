@@ -8,6 +8,7 @@
     <audio src="./alarmgong.wav" id="alarmgong"></audio>
     <audio src="./alarmGong.mp3" id="gong"></audio>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 
 <body>
@@ -75,15 +76,18 @@
     <br>
     <br>
     <br>
+    <div id="alarmMap">
+    </div>
     <br>
     <br>
     <br>
     <br>
-    <button id="btn_reset_alarm">alarm zurücksetzen</button>
 
     <script src="./alarmDisplay.js"></script>
     <script src="./tts.js"></script>
     <script src="./apiCalls.js"></script>
+    <script src="./mapScript.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <!--TODO: HTML für Alarm-erstellung-->
 
 </body>

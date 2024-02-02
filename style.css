@@ -113,3 +113,11 @@ body {
     background: rgba(0, 0, 0, 0.5);
     z-index: 999;
 }
+
+#alarmMap {
+    background-color: #f0f0f0;
+    margin-top: -75px;
+    margin-left: 10px;
+    height: 475px;
+    width: 1000px;
+}

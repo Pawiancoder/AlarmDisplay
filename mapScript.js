@@ -51,11 +51,19 @@ function initializeMapWithCity(city) {
                 // Erstelle die Karte und binde sie an das "map"-Element
                 var mapOptions = {
                     center: myLatLng, // Mittelpunkt der Karte
-                    zoom: 12 // Zoomstufe (1 = ganz nah, 20 = sehr weit entfernt)
+                    zoom: 12, // Zoomstufe (1 = ganz nah, 20 = sehr weit entfernt)
+                    dragging: false, // Karte nicht verschiebbar machen
+                    touchZoom: false, // Touch-Zoom deaktivieren
+                    scrollWheelZoom: false, // Mausrad-Zoom deaktivieren
+                    doubleClickZoom: false, // Doppelklick-Zoom deaktivieren
+                    boxZoom: false, // Rechteck-Zoom deaktivieren
+                    keyboard: false, // Tastatur-Steuerung deaktivieren
+                    tap: false, // Tap-Zoom deaktivieren
+                    zoomControl: false // Zoom-Steuerung deaktivieren
                 };
 
                 // Erstelle die Karte und binde sie an das "map"-Element
-                map = L.map('map', mapOptions); // map als globale Variable setzen
+                map = L.map('alarmMap', mapOptions); // map als globale Variable setzen
 
                 // Füge OpenStreetMap-Kacheln zur Karte hinzu
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
