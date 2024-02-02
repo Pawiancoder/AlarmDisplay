@@ -32,7 +32,6 @@ function saveAlarmToArr(alarmTitle, alarmID) {
     alarm.id = alarmID;
     alarmArr.push(alarm);
 }
-
 // Globales Objekt zur Speicherung von Alarm-Markern mit ihren IDs
 var alarmMarkers = {};
 
@@ -51,7 +50,7 @@ function initializeMapWithCity(city) {
                 // Erstelle die Karte und binde sie an das "map"-Element
                 var mapOptions = {
                     center: myLatLng, // Mittelpunkt der Karte
-                    zoom: 12, // Zoomstufe (1 = ganz nah, 20 = sehr weit entfernt)
+                    zoom: 14, // Zoomstufe (1 = ganz nah, 20 = sehr weit entfernt)
                     dragging: false, // Karte nicht verschiebbar machen
                     touchZoom: false, // Touch-Zoom deaktivieren
                     scrollWheelZoom: false, // Mausrad-Zoom deaktivieren

@@ -18,10 +18,12 @@ const rei46 = document.getElementById("REI46");
 const rei74 = document.getElementById("REI74");
 const vehicleIdArr = [rei191, rei192, rei44, rei46, rei74];
 let alarmZeit = 10000; //Zeit in MS (SEKUNDE * 1000) => 60 sekunden * 1000 = 60000 ms
+let alarmTItle = "";
 
 //Programmstart
 
-function triggerAlarm(title, vehicles, kategorie, sound, type) {
+function triggerAlarm(title, vehicles, kategorie, sound, type, street, city) {
+    alarmTItle = title;
     console.log("Cars: " + vehicles);
     if (title != "" && title != undefined && kategorie != "" && kategorie != undefined) {
 
@@ -48,11 +50,11 @@ function triggerAlarm(title, vehicles, kategorie, sound, type) {
             }
         });
 
+        createAlarm(street, city, title);
         var displayElement = document.getElementById('display');
         displayElement.innerHTML = `<h1>${kategorie} - ${title}</h1>`;
         displayElement.classList.add('blink');
         displayElement.style.color = "red";
-        resetBtn.style.visibility = "visible";
         activeAlert = true;
 
         setTimeout(function () {
@@ -99,7 +101,7 @@ function resetAlarm() {
     }, alarmZeit);
     setTimeout(function () {
         activeAlert = false;
-        //location.reload();
+        location.reload();
     }, alarmZeit + 7000); //Alarmzeit + 7 Sekunden (Zeit zum reseten vom Display dann reload der Seite)
 }
 
