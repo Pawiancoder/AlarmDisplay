@@ -15,7 +15,7 @@ function sendGETrequest(reset) {
             .then(data => {
                 //console.log(data.data[0]);
                 console.log("DATA: ", data.data.data);
-                if (data.data.error == "Error_no_data" || data.length === 0) {
+                if (data.error == "Error_no_data" || data.length === 0) {
                     console.log("Im moment liegt kein Einsatz vor");
                     return;
                 } else {
@@ -27,8 +27,11 @@ function sendGETrequest(reset) {
                     let category = mainData.category;
                     let sound = mainData.sound;
                     let type = mainData.type;
+                    let street = mainData.street;
+                    let city = mainData.city;
+                    //console.log(street + " " + city);
                     //Alarmfunction
-                    triggerAlarm(title, vehicles, category, sound, type);
+                    triggerAlarm(title, vehicles, category, sound, type, street, city);
                     //!WEITERER CODE HIER
                 }
             })

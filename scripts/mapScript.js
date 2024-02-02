@@ -58,7 +58,7 @@ function initializeMapWithCity(city) {
                     boxZoom: false, // Rechteck-Zoom deaktivieren
                     keyboard: false, // Tastatur-Steuerung deaktivieren
                     tap: false, // Tap-Zoom deaktivieren
-                    zoomControl: false // Zoom-Steuerung deaktivieren
+                    zoomControl: false, // Zoom-Steuerung deaktivieren,
                 };
 
                 // Erstelle die Karte und binde sie an das "map"-Element
