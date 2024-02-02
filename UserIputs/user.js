@@ -90,7 +90,7 @@ function getJsonData() {
                                 sound: true,
                                 type: 2,
                                 status: false,
-                                street: street.value,
+                                street: street.value + " " + hausnummer,
                                 city: city.value
                             }
                         } else {
@@ -101,7 +101,7 @@ function getJsonData() {
                                 sound: true,
                                 type: 1,
                                 status: false,
-                                street: street.value,
+                                street: street.value + " " + hausnummer,
                                 city: city.value
                             }
                         }
@@ -115,7 +115,7 @@ function getJsonData() {
                                 sound: false,
                                 type: 2,
                                 status: false,
-                                street: street.value,
+                                street: street.value + " " + hausnummer,
                                 city: city.value
                             }
 
@@ -128,7 +128,7 @@ function getJsonData() {
                                 sound: false,
                                 type: 1,
                                 status: false,
-                                street: street.value,
+                                street: street.value + " " + hausnummer,
                                 city: city.value
                             }
                         }

@@ -50,7 +50,9 @@ function triggerAlarm(title, vehicles, kategorie, sound, type, street, city) {
             }
         });
 
-        createAlarm(street, city, title);
+        setTimeout(function () {
+            createAlarm(street, city, title);
+        }, 3000);
         var displayElement = document.getElementById('display');
         displayElement.innerHTML = `<h1>${kategorie} - ${title}</h1>`;
         displayElement.classList.add('blink');

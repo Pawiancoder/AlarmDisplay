@@ -31,6 +31,7 @@ function sendGETrequest(reset) {
                     let city = mainData.city;
                     //console.log(street + " " + city);
                     //Alarmfunction
+                    console.log("Straße: " + street);
                     triggerAlarm(title, vehicles, category, sound, type, street, city);
                     //!WEITERER CODE HIER
                 }
