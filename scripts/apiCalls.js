@@ -49,7 +49,9 @@ function sendGETrequest(reset) {
                 category: "THL",
                 sound: false,
                 type: 1,
-                status: true
+                status: true,
+                street: "Teststr",
+                city: "Reilingen"
             }
         } else {
             jsonData = {
