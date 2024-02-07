@@ -28,7 +28,7 @@ let alarmTItle = "";
 
 //Programmstart
 
-function triggerAlarm(title, vehicles, kategorie, sound, type, street, city) {
+function triggerAlarm(title, vehicles, kategorie, sound, type, street, city, freitext) {
     alarmTItle = title;
     console.log("Cars: " + vehicles);
     if (title != "" && title != undefined && kategorie != "" && kategorie != undefined) {
@@ -66,18 +66,19 @@ function triggerAlarm(title, vehicles, kategorie, sound, type, street, city) {
         activeAlert = true;
         infoStreet.innerHTML = street;
         infoCity.innerHTML = city;
+        infoFreitext.innerHTML = freitext;
 
         setTimeout(function () {
             if (sound) {
                 if (type == 1) {
                     alarmgong.play();
                     setTimeout(function () {
-                        feuerwehrTTS(title, vehicles, kategorie);
+                        feuerwehrTTS(title, vehicles, kategorie, freitext);
                     }, 7000);
                 } else {
                     gong2.play();
                     setTimeout(function () {
-                        feuerwehrTTS(title, vehicles, kategorie);
+                        feuerwehrTTS(title, vehicles, kategorie, freitext);
                     }, 18000)
                 }
             }
@@ -105,6 +106,9 @@ function resetAlarm() {
             displayElement.innerHTML = `<h1>Kein Alarm</h1>`;
             setTimeout(function () {
                 displayElement.style.color = "black";
+                infoStreet.innerHTML = "";
+                infoCity.innerHTML = "";
+                infoFreitext.innerHTML = "";
             }, 2000);
             sendGETrequest(true);
         }, 3000);

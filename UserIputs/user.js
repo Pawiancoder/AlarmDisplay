@@ -14,6 +14,8 @@ const rei174 = document.getElementById("REI74");
 
 const resetCheckbox = document.getElementById("reset");
 
+const freitext = document.getElementById("Freitext");
+
 //checkboxes alarmtype, gong, gongtype
 const brandalarm = document.getElementById("fire");
 const thl = document.getElementById("thl");
@@ -91,7 +93,8 @@ function getJsonData() {
                                 type: 2,
                                 status: false,
                                 street: street.value + " " + hausnummer,
-                                city: city.value
+                                city: city.value,
+                                freitext: freitext.value
                             }
                         } else {
                             jsonData = {
@@ -102,7 +105,8 @@ function getJsonData() {
                                 type: 1,
                                 status: false,
                                 street: street.value + " " + hausnummer,
-                                city: city.value
+                                city: city.value,
+                                freitext: freitext.value
                             }
                         }
                     } else {

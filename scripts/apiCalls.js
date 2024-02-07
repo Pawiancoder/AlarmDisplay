@@ -29,10 +29,12 @@ function sendGETrequest(reset) {
                     let type = mainData.type;
                     let street = mainData.street;
                     let city = mainData.city;
+                    let freitext = "";
+                    freitext = mainData.freitext;
                     //console.log(street + " " + city);
                     //Alarmfunction
                     console.log("Straße: " + street);
-                    triggerAlarm(title, vehicles, category, sound, type, street, city);
+                    triggerAlarm(title, vehicles, category, sound, type, street, city, freitext);
                     //!WEITERER CODE HIER
                 }
             })
