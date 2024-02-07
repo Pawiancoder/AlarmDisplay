@@ -121,3 +121,15 @@ body {
     height: 500px;
     width: 1000px;
 }
+
+.alarmInfoField {
+    position: fixed;
+    bottom: 0;
+    right: -140px;
+    /* Beispielwert, kann angepasst werden */
+    margin-top: -55px;
+    margin-left: 50px;
+    height: 520px;
+    width: 1000px;
+    border: 1px solid #000;
+}

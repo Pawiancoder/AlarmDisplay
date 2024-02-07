@@ -1,4 +1,4 @@
-const ip = "raspberrypi"; //Hostname
+const ip = "rasp-maksy"; //Hostname
 
 const apiUrl = `http://${ip}:5000/api/alarm-api`;
 

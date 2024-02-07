@@ -7,6 +7,12 @@ let alarmText = "";
 const warteSekunden = 60;
 const resetTime = warteSekunden * 1000;
 
+//Ausgabevariablen Alarmfeld
+let infoStreet = document.getElementById("info_street");
+let infoCity = document.getElementById("info_city");
+let infoFreitext = document.getElementById("info_freitext");
+
+//Alarmvariablen
 const alarmInput = document.getElementById("alarm_in");
 let Stichwort = document.getElementById("stichwort");
 let checkBox_Feuer = document.getElementById("FEU");
@@ -58,6 +64,8 @@ function triggerAlarm(title, vehicles, kategorie, sound, type, street, city) {
         displayElement.classList.add('blink');
         displayElement.style.color = "red";
         activeAlert = true;
+        infoStreet.innerHTML = street;
+        infoCity.innerHTML = city;
 
         setTimeout(function () {
             if (sound) {
