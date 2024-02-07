@@ -1,4 +1,4 @@
-Alarmierungsfenster: http://raspberrypi/
+Alarmierungsfenster: http://rasp-maksy/ oder die ip-adresse (welche sich mit der Zeit ändern kann, was der Hostname nicht macht)
 
 Alarmdisplay: dme.html aus der zip-datei in den Brower
 
