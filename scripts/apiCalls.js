@@ -1,4 +1,4 @@
-const ip = "rasp-maksy"; //Hostname
+const ip = "127.0.0.1"; //Hostname
 
 const apiUrl = `http://${ip}:5000/api/alarm-api`;
 
@@ -14,17 +14,18 @@ function sendGETrequest(reset) {
             })
             .then(data => {
                 //console.log(data.data[0]);
-                console.log("DATA: ", data.data.data);
+                console.log("DATA: ", data.data);
                 if (data.error == "Error_no_data" || data.length === 0) {
                     console.log("Im moment liegt kein Einsatz vor");
                     return;
                 } else {
                     console.log("Einsatz!");
-                    let mainData = data.data[0];
-                    console.log(data);
+                    console.log("Alarmtitel: ", data.data.title);
+                    console.log("Vehicles: ", data.data.vehicles);
+                    let mainData = data.data;
                     let title = mainData.title;
                     let vehicles = mainData.vehicles;
-                    let category = mainData.category;
+                    let category = mainData.cathegory;
                     let sound = mainData.sound;
                     let type = mainData.type;
                     let street = mainData.street;

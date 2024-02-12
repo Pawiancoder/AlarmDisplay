@@ -29,70 +29,67 @@ let alarmTItle = "";
 //Programmstart
 
 function triggerAlarm(title, vehicles, kategorie, sound, type, street, city, freitext) {
+    console.log("TITLE: ", title); console.log("CARS: ", vehicles); console.log("KAT: ", kategorie); console.log("SOUND: ", sound);
+    console.log("TYPE: ", type); console.log("STREET: ", street); console.log("CITY: ", city); console.log("FREITEXT: ", freitext);
     alarmTItle = title;
     console.log("Cars: " + vehicles);
-    if (title != "" && title != undefined && kategorie != "" && kategorie != undefined) {
 
-        vehicles.forEach(vehicle => {
-            switch (vehicle) {
-                case "REI19/1":
-                    rei191.classList.add("blink2");
-                    break;
-                case "REI19/2":
-                    rei192.classList.add("blink2");
-                    break;
-                case "REI44":
-                    rei44.classList.add("blink2");
-                    break;
-                case "REI46":
-                    rei46.classList.add("blink2");
-                    break;
-                case "REI74":
-                    rei74.classList.add("blink2");
-                    break;
-                default:
-                    alert(`Kein Fahrzeug mit dem Namen ${vehicle} wurde gefunden!`);
-                    break;
+    vehicles.forEach(vehicle => {
+        switch (vehicle) {
+            case "REI19/1":
+                rei191.classList.add("blink2");
+                break;
+            case "REI19/2":
+                rei192.classList.add("blink2");
+                break;
+            case "REI44":
+                rei44.classList.add("blink2");
+                break;
+            case "REI46":
+                rei46.classList.add("blink2");
+                break;
+            case "REI74":
+                rei74.classList.add("blink2");
+                break;
+            default:
+                alert(`Kein Fahrzeug mit dem Namen ${vehicle} wurde gefunden!`);
+                break;
+        }
+    });
+
+    setTimeout(function () {
+        createAlarm(street, city, title);
+    }, 3000);
+    var displayElement = document.getElementById('display');
+    displayElement.innerHTML = `<h1>${kategorie} - ${title}</h1>`;
+    displayElement.classList.add('blink');
+    displayElement.style.color = "red";
+    activeAlert = true;
+    infoStreet.innerHTML = street;
+    infoCity.innerHTML = city;
+    infoFreitext.innerHTML = freitext;
+
+    setTimeout(function () {
+        if (sound) {
+            if (type == 1) {
+                alarmgong.play();
+                setTimeout(function () {
+                    feuerwehrTTS(title, vehicles, kategorie, freitext);
+                }, 7000);
+            } else {
+                gong2.play();
+                setTimeout(function () {
+                    feuerwehrTTS(title, vehicles, kategorie, freitext);
+                }, 18000)
             }
-        });
+        }
+    }, 1000);
 
-        setTimeout(function () {
-            createAlarm(street, city, title);
-        }, 3000);
-        var displayElement = document.getElementById('display');
-        displayElement.innerHTML = `<h1>${kategorie} - ${title}</h1>`;
-        displayElement.classList.add('blink');
-        displayElement.style.color = "red";
-        activeAlert = true;
-        infoStreet.innerHTML = street;
-        infoCity.innerHTML = city;
-        infoFreitext.innerHTML = freitext;
-
-        setTimeout(function () {
-            if (sound) {
-                if (type == 1) {
-                    alarmgong.play();
-                    setTimeout(function () {
-                        feuerwehrTTS(title, vehicles, kategorie, freitext);
-                    }, 7000);
-                } else {
-                    gong2.play();
-                    setTimeout(function () {
-                        feuerwehrTTS(title, vehicles, kategorie, freitext);
-                    }, 18000)
-                }
-            }
-        }, 1000);
-
-        setTimeout(function () {
-            if (activeAlert) {
-                resetAlarm();
-            }
-        }, 600000) //600 000 ms => 10 min bis reset
-    } else {
-        alert("Der Alarmtitel oder die Fahrzeugliste darf nicht leer sein!");
-        throw new Error("AlarmdispError: Text / Vehiclelist is empty!");
-    }
+    setTimeout(function () {
+        if (activeAlert) {
+            resetAlarm();
+        }
+    }, 600000) //600 000 ms => 10 min bis reset
 }
 
 function resetAlarm() {
