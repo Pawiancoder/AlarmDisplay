@@ -37,7 +37,7 @@ alarmBtn.addEventListener("click", () => {
     getJsonData();
 })
 
-function getJsonData() {
+async function getJsonData() {
     let brandalarm = false;
     let thl = false;
     let vehicles = [];
@@ -79,11 +79,12 @@ function getJsonData() {
                         //gong an
                         console.log("K: ", kategorie);
                         if (isNaN(houseNumber.value)) {
-                            alert("Die Hausnummer ist eine Zahl! (Bei bspw 2a nur 2)!");
+                            alert("Die Hausnummer ist eine Zahl! (Bspw. 2 statt 2a)!");
                             return;
                         }
                         let hausnummer = 0;
                         hausnummer = houseNumber.value;
+                        let stateRes = await checkDisplayState();
                         if (brandalarm.checked) {
                             jsonData = {
                                 title: keyWordField.value,
@@ -189,6 +190,30 @@ function sendPostRequest(jsonData) {
         .catch(error => {
             console.error('Fehler beim API-Aufruf:', error);
         });
+}
+
+//Resetrequest
+async function checkDisplayState() {
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Fehler beim Lesen der Daten der API: ${error.message}.`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            //console.log(data.data[0]);
+            //console.log("DATA: ", data.data);
+            if (data.error != "Error_no_data" || data.length > 0) {
+                alert("Auf dem Monitor ist noch ein Alarm aktiv! Bitte setze diesen zuerst zurück und versuche es dann erneut!");
+                return false;
+            } else {
+                return true;
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        })
 }
 
 
