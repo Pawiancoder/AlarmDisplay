@@ -74,12 +74,12 @@ function triggerAlarm(title, vehicles, kategorie, sound, type, street, city, fre
             if (type == 1) {
                 alarmgong.play();
                 setTimeout(function () {
-                    feuerwehrTTS(title, vehicles, kategorie, freitext);
+                    feuerwehrTTS(title, vehicles, kategorie, freitext, street);
                 }, 7000);
             } else {
                 gong2.play();
                 setTimeout(function () {
-                    feuerwehrTTS(title, vehicles, kategorie, freitext);
+                    feuerwehrTTS(title, vehicles, kategorie, freitext, street);
                 }, 18000)
             }
         }

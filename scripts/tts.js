@@ -7,7 +7,7 @@ function speak(txt) {
     window.speechSynthesis.speak(msg);
 }
 
-function feuerwehrTTS(title, units, type, freitext) {
+function feuerwehrTTS(title, units, type, freitext, street) {
     console.log("Alarmart: ", type);
     let unitArr = [];
     let alarmType = "";
@@ -44,9 +44,9 @@ function feuerwehrTTS(title, units, type, freitext) {
     }
     if (title == "") throw new Error("Der Titel ist leer (tts.js)");
     if (freitext != "" && freitext != undefined) {
-        speak(alarmType + ": " + checkKeyword(title) + "! " + freitext + ". Alarm für: " + unitArr + "");
+        speak(alarmType + ": " + checkKeyword(title) + "! " + freitext + ". Alarm für: " + unitArr + "! " + street);
     } else {
-        speak(alarmType + ": " + checkKeyword(title) + "! " + freitext + ". Alarm für: " + unitArr + "");
+        speak(alarmType + ": " + checkKeyword(title) + "! " + freitext + ". Alarm für: " + unitArr + "! " + street);
     }
 
 }
