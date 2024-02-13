@@ -38,6 +38,7 @@ alarmBtn.addEventListener("click", () => {
 })
 
 async function getJsonData() {
+    let stateRes = true; //true => kein Alarm
     let brandalarm = false;
     let thl = false;
     let vehicles = [];
@@ -60,6 +61,9 @@ async function getJsonData() {
             type: 1,
             status: true
         }
+        sendPostRequest(jsonData);
+        alert("Der Alarm wurde beendet und die Monitore werden zurückgesetzt!");
+        return;
     } else {
         if (checkedVehicles.length == 0) {
             alert("Es wurden keine Fahrzeuge ausgewählt!");
@@ -84,7 +88,21 @@ async function getJsonData() {
                         }
                         let hausnummer = 0;
                         hausnummer = houseNumber.value;
-                        let stateRes = await checkDisplayState();
+                        console.log("stateRes: ", stateRes);
+                        if (!stateRes) {
+                            jsonData = {
+                                title: "keyWord",
+                                vehicles: "checkedVehicles",
+                                category: "kategorie",
+                                sound: false,
+                                type: 2,
+                                status: true,
+                                street: "street",
+                                city: "city",
+                                freitext: "freitext"
+                            }
+                            return;
+                        }
                         if (brandalarm.checked) {
                             jsonData = {
                                 title: keyWordField.value,
@@ -142,8 +160,7 @@ async function getJsonData() {
             }
         }
     }
-    alert("Alarmiert! Bitte am Monitor nach der Alarmierung zurücksetzen und dann bei Bedarf erst erneut alarmieren!");
-    sendPostRequest(jsonData);
+    checkDisplayState(jsonData);
     resetFields();
 }
 
@@ -193,7 +210,7 @@ function sendPostRequest(jsonData) {
 }
 
 //Resetrequest
-async function checkDisplayState() {
+async function checkDisplayState(jsonData) {
     fetch(apiUrl)
         .then(response => {
             if (!response.ok) {
@@ -201,14 +218,16 @@ async function checkDisplayState() {
             }
             return response.json();
         })
-        .then(data => {
+        .then(data2 => {
             //console.log(data.data[0]);
-            //console.log("DATA: ", data.data);
-            if (data.error != "Error_no_data" || data.length > 0) {
+            console.log("DATA: ", data2.error);
+            if (data2.error != "Error_no_data") {
+                console.log("DATA-ERROR: ", data2);
                 alert("Auf dem Monitor ist noch ein Alarm aktiv! Bitte setze diesen zuerst zurück und versuche es dann erneut!");
-                return false;
-            } else {
-                return true;
+                return;
+            } else if (data2.error == "Error_no_data") {
+                alert("Der Alarm wurde ausgelößt und wird an die Monitore geschickt!");
+                sendPostRequest(jsonData);
             }
         })
         .catch(error => {

@@ -46,15 +46,15 @@ function feuerwehrTTS(title, units, type, freitext, street) {
     }
     if (title == "") throw new Error("Der Titel ist leer (tts.js)");
     if (freitext != "" && freitext != undefined) {
-        speak(alarmType + ": " + checkKeyword(title) + "! " + freitext + ". Alarm für: " + unitArr + "! " + finalStreet + " Nummer " + houseNumber);
+        speak(alarmType + ": " + checkKeyword(title) + "! " + freitext + ". Alarm für: " + unitArr + "! " + street);
     } else {
-        speak(alarmType + ": " + checkKeyword(title) + "! " + freitext + ". Alarm für: " + unitArr + "! " + finalStreet + " Nummer " + houseNumber);
+        speak(alarmType + ": " + checkKeyword(title) + "! " + freitext + ". Alarm für: " + unitArr + "! " + street);
     }
 
 }
 
 function checkKeyword(txt) {
-    let shortWordsArr = ["BMA", "Brandmeldeanlage ausgelößt", "RD", "Rettungsdienst", "St.", "Sankt", "VU", "Verkehrsunfall"]; // "Abkürzung", "Bedeutung"
+    let shortWordsArr = ["BMA", "Brandmeldeanlage", "RD", "Rettungsdienst", "St.", "Sankt"]; // "Abkürzung", "Bedeutung"
     let returnStr = "";
     let checkArr = txt.split(" ");
 
