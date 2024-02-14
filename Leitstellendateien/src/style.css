@@ -1,0 +1,110 @@
+body {
+    background-color: gray;
+    color: wheat;
+}
+
+@keyframes blink {
+
+    0%,
+    49%,
+    100% {
+        opacity: 1;
+    }
+
+    50%,
+    99% {
+        opacity: 1;
+    }
+}
+
+.blinking {
+    animation: blink is infinite;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 150px;
+    margin-left: 175px;
+}
+
+.carList {
+    list-style: none;
+    padding: 0;
+}
+
+.carList li {
+    display: block;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 150px;
+}
+
+.carList p {
+    margin-left: auto;
+    margin-right: 20px;
+    background-color: green;
+}
+
+#status-0 {
+    display: inline-block;
+    background-color: palevioletred;
+    color: white;
+}
+
+#status-1 {
+    display: inline-block;
+    background-color: blue;
+    color: white;
+}
+
+#status-2 {
+    display: inline-block;
+    background-color: green;
+    color: white;
+}
+
+#status-3 {
+    display: inline-block;
+    background-color: yellow;
+    color: black;
+}
+
+#status-4 {
+    display: inline-block;
+    background-color: orange;
+    color: black;
+}
+
+#status-5 {
+    display: inline-block;
+    background-color: red;
+    color: black;
+}
+
+#status-6 {
+    display: inline-block;
+    background-color: black;
+    color: white;
+}
+
+.caller-tooltips {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltipList {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    z-index: 1;
+}
+
+.hover-element {
+    cursor: pointer;
+}

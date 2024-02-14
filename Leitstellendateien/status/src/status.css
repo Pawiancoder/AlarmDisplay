@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.wrapper {
+    width: 100%;
+}
+
+.container {
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    height: 400px;
+    width: 13%;
+    margin: 0 auto;
+}
+
+#output {
+    display: block;
+    background-color: #fff;
+    color: green;
+    /* Grün als Hintergrundfarbe für den Output-Kasten */
+    padding: 20px;
+    /* Breiterer Output-Kasten */
+    margin-bottom: 10px;
+    /* Abstand zwischen dem Output-Kasten und den Buttons */
+    height: 85px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 100px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}

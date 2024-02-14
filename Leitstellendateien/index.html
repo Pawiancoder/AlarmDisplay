@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leitstelle</title>
+    <link rel="stylesheet" href="./src/style.css">
+    <audio src="./src/sounds/funk.wav" id="funk"></audio>
+    <audio src="./src/sounds/funk_ende.wav" id="funk_ende"></audio>
+    <audio src="./src/sounds/alarmgong.wav" id="alarmgong"></audio>
+    <audio src="./src/sounds/telefon.wav" id="telefon"></audio>
+    <audio src="./src/sounds/error.wav" id="error"></audio>
+    <audio src="./src/sounds/lst_call_dme.ogg" id="funk_sound"></audio>
+</head>
+
+<body>
+    <button onclick="openStatusWindow()">Status öffnen</button>
+    <div class="content">
+        <div>
+            <h1>Anrufer</h1>
+            <!--Übersicht-->
+            <p><b><u>Hier werden Informationen vom Anrufer angezeigt.</u></b></p>
+            <br>
+            <div class="caller-tooltips">
+                <img src="./src/icons/info.svg" class="hover-element" onmouseover="showToolTip();">
+                <div class="tooltipList" id="ToolTip">
+                    <ul>
+                        <li>Wo ist was passiert?</li>
+                        <li>Wer ruft an?</li>
+                        <li>Was ist passiert?</li>
+                        <li>Gibt es Verletzte?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h1>Alarmfenster</h1>
+            <!--Alarmfenster-->
+            <button onclick="dispatch('',true)">Neuer Alarm</button>
+            <br>
+            <br>
+            <p><b><u>Schreibe hier Informationen zum Einsatz hinein um danach die Einsatzkräfte zu alarmieren!</u></b>
+            </p>
+            <br>
+            <br>
+            <label for="">Stichwort*</label>
+            <input type="text" name="Stichwort" id="keyword_field" placeholder="B0 - Mülleimerbrand">
+            <br>
+            <br>
+            <br>
+            <label for="">Anrufer*</label>
+            <input type="text" name="Anrufer" id="caller_field" placeholder="Herr XYZ">
+            <br>
+            <br>
+            <br>
+            <label for="">Adresse*</label>
+            <input type="text" name="Adresse" id="adress_field" placeholder="Teststr. 1, Teststadt">
+            <br>
+            <br>
+            <br>
+            <label for="">Verletzte*</label>
+            <input type="text" name="Anzahl_Verletzte" id="injured_field" placeholder="keine Verletzten">
+            <br>
+            <br>
+            <br>
+            <label for="text_field">Freitext</label>
+            <textarea name="Freitext" id="text_field" cols="30" rows="10"
+                placeholder="FREITEXT // Zusatzinfos"></textarea>
+            <br>
+            <br>
+            <br>
+            <h4><u>Alarmierte Kräfte:</u></h4>
+            <label for="REI19/1">Reilingen 19/1</label>
+            <input type="checkbox" name="MTW1" id="REI19/1" class="unitCheckList">
+            <br>
+            <br>
+            <label for="REI19/2">Reilingen 19/2</label>
+            <input type="checkbox" name="MTW1" id="REI19/2" class="unitCheckList">
+            <br>
+            <br>
+            <label for="REI44">Reilingen 44</label>
+            <input type="checkbox" name="MTW1" id="REI44" class="unitCheckList">
+            <br>
+            <br>
+            <label for="REI46">Reilingen 46</label>
+            <input type="checkbox" name="MTW1" id="REI46" class="unitCheckList">
+            <br>
+            <br>
+            <label for="REI74">Reilingen 74</label>
+            <input type="checkbox" name="MTW1" id="REI74" class="unitCheckList">
+            <br>
+            <br>
+            <br>
+            <button>Alarmieren</button>
+        </div>
+        <div>
+            <h1>Fahrzeuge</h1>
+            <!--Fahrzeuge-->
+            <ul>
+                <div class="carList">
+                    <li onclick='clickVehicle("MTW1")' id="REI_19/1">
+                        REI 19/1 (MTW) <p class="MTW1" id="status-2">2</p>
+                    </li>
+                    <li onclick='clickVehicle("MTW2")' id="REI_19/2">REI 19/2 (MTW) <p class="MTW2" id="status-2">2</p>
+                    </li>
+                    <li onclick='clickVehicle("LF16")' id="REI_44">REI 44 (LF16) <p class="LF16" id="status-2">2</p>
+                    </li>
+                    <li onclick='clickVehicle("HLF")' id="REI_46">REI 46 (HLF) <p class="HLF" id="status-2">2</p>
+                    </li>
+                    <li onclick='clickVehicle("GWL2")' id="REI_74">REI 74 (GWL-2) <p class="GWL2" id="status-2">2</p>
+                    </li>
+                </div>
+                <div class="statusHelp">
+                    <div class="statusList">
+                        <p>
+                            <a id="status-0">0</a> <b>Priorisierter Sprechwunsch</b>
+                        </p>
+                        <p>
+                            <a id="status-1">1</a> <b>Frei auf Funk</b>
+                        </p>
+                        <p>
+                            <a id="status-2">2</a> <b>Einsatzbereit auf Wache</b>
+                        </p>
+                        <p>
+                            <a id="status-3">3</a> <b>Einsatz übernommen</b>
+                        </p>
+                        <p>
+                            <a id="status-4">4</a> <b>Ankunft an Einsatzstelle</b>
+                        </p>
+                        <p>
+                            <a id="status-5">5</a> <b>Sprechwunsch</b>
+                        </p>
+                        <p>
+                            <a id="status-6">6</a> <b>Nicht Einsatzbereit</b>
+                        </p>
+                    </div>
+                </div>
+            </ul>
+        </div>
+        <div class="messageField">
+            <h1>Funk</h1>
+            <label for="carname">Funkrufname:</label>
+            <input type="text" name="carname" id="Radio_carname" placeholder="Reilingen 44">
+            <br>
+            <br>
+            <label for="message">Funknachricht:</label>
+            <textarea name="Nachricht" id="Radio_message" cols="30" rows="10" placeholder="Funktext"></textarea>
+            <br>
+            <br>
+            <button id="radio_send_btn">Senden</button>
+            <button id="radio_stop_btn">Funk beenden</button>
+        </div>
+    </div>
+</body>
+<script src="./src/alarm.js"></script>
+<script src="./src/funk.js"></script>
+<script src="./src/status.js"></script>
+<script src="./src/tts.js"></script>
+<script src="./src/app.js"></script>
+
+</html>

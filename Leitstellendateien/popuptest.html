@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup Beispiel mit Textfeld</title>
+    <style>
+        /* Stile für das Popup */
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        /* Hintergrundüberlagerung für das Popup */
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hauptseite Inhalt -->
+    <p id="mainContent">Hier ist der Inhalt deiner Hauptseite.</p>
+
+    <!-- Button zum Öffnen des Popups -->
+    <button onclick="openPopup()">Popup öffnen</button>
+
+    <!-- Popup-Inhalt -->
+    <div id="overlay" onclick="closePopup()"></div>
+    <div id="popup">
+        <h2>Popup Inhalt</h2>
+        <label for="popupInput">Textfeld im Popup:</label>
+        <input type="text" id="popupInput">
+        <button onclick="transferContent()">Inhalt übertragen</button>
+        <button onclick="closePopup()">Schließen</button>
+    </div>
+
+    <script>
+        // Funktion zum Öffnen des Popups
+        function openPopup() {
+            // Das Popup und die Überlagerung anzeigen
+            document.getElementById("overlay").style.display = "block";
+            document.getElementById("popup").style.display = "block";
+        }
+
+        // Funktion zum Schließen des Popups
+        function closePopup() {
+            // Das Popup und die Überlagerung ausblenden
+            document.getElementById("overlay").style.display = "none";
+            document.getElementById("popup").style.display = "none";
+        }
+
+        // Funktion zum Übertragen des Textfeld-Inhalts auf die Hauptseite
+        function transferContent() {
+            // Textfeld-Inhalt aus dem Popup holen
+            var popupInputValue = document.getElementById("popupInput").value;
+
+            // Inhalt auf die Hauptseite übertragen
+            document.getElementById("mainContent").innerHTML = "Übertragener Inhalt: " + popupInputValue;
+
+            // Popup schließen
+            closePopup();
+        }
+    </script>
+
+</body>
+
+</html>
