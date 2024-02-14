@@ -1,0 +1,2 @@
+Errorcodes:
+- Error_no_data: Keine Daten sind auf der API gefunden worden (Sende neue Daten per POST Request um welche zu laden)

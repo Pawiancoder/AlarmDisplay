@@ -1,0 +1,17 @@
+{
+    "data": [
+        {
+            "title": "brennender Heuballen",
+            "vehicles": [
+                "REI19/1",
+                "REI46",
+                "REI19/2",
+                "REI44",
+                "REI74"
+            ],
+            "category": "Brandalarm",
+            "sound": true,
+            "type": 2
+        }
+    ]
+}
