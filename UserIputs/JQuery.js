@@ -10,6 +10,5 @@ $(function () {
         "Alarmstufenerhöhung auf TH3", "Alarmstufenerhöhung auf zu TH4"]; //Stichwörtersammlung / Array
     $("#In_keyword").autocomplete({
         source: stichwoerter,
-        //position: { my: "right top", at: "right bottom" },
     });
 });
