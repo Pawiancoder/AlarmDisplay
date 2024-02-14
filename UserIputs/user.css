@@ -1,4 +1,23 @@
+body .ui-autocomplete div {
+    width: auto;
+    height: 20px;
+    background-color: white;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+body .ui-autocomplete {
+    width: auto;
+    height: auto;
+    box-sizing: border-box;
+    display: inline-block;
+    background-color: white;
+}
+
+body .ui-autocomplete li :hover {
+    background-color: rgb(179, 177, 177);
+}
+
 body {
-    color: aqua;
     background-color: gray;
 }
