@@ -54,7 +54,8 @@ function sendGETrequest(reset) {
                 type: 1,
                 status: true,
                 street: "Teststr",
-                city: "Reilingen"
+                city: "Reilingen",
+                alarmLevel: 0
             }
         } else {
             jsonData = {
@@ -63,7 +64,8 @@ function sendGETrequest(reset) {
                 category: "THL",
                 sound: false,
                 type: 1,
-                status: false
+                status: false,
+                alarmLevel: 0
             }
         }
         fetch(apiUrl)
