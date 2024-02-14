@@ -46,9 +46,9 @@ function feuerwehrTTS(title, units, type, freitext, street) {
     }
     if (title == "") throw new Error("Der Titel ist leer (tts.js)");
     if (freitext != "" && freitext != undefined) {
-        speak(alarmType + ": " + checkKeyword(title) + "! " + freitext + ". Alarm für: " + unitArr + "! " + street);
+        speak(checkKeyword(title) + "! " + freitext + ". Alarm für: " + unitArr + "! " + street);
     } else {
-        speak(alarmType + ": " + checkKeyword(title) + "! " + freitext + ". Alarm für: " + unitArr + "! " + street);
+        speak(checkKeyword(title) + "! Alarm für: " + unitArr + "! " + street);
     }
 
 }

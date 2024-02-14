@@ -11,15 +11,6 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!--Stylesheet-->
     <link rel="stylesheet" href="user.css">
-    <script>
-        $(function () {
-            var stichwoerter = ["B0 - Kleinbrand", "B2 - Garagenbrand", "B3 - Branmeldeanlage", "TH1 - P Tür"]; //Stichwörtersammlung / Array
-            $("#In_keyword").autocomplete({
-                source: stichwoerter,
-                //position: { my: "right top", at: "right bottom" },
-            });
-        });
-    </script>
 </head>
 
 <body>
@@ -68,13 +59,9 @@
         <div class="types">
             <label for="fire">Brandalarm:</label>
             <input type="checkbox" name="Brandalarm" id="fire">
-            <label for="brand_stufe">Alarmstufe:</label>
-            <input type="number" name="alarmstufe_brand" id="brand_stufe" min="0" max="4" placeholder="Alarmstufe">
             <br>
             <label for="thl">Technische Hilfeleistung:</label>
             <input type="checkbox" name="THL" id="thl">
-            <label for="thl_stufe">Alarmstufe:</label> <!--THL Alarmstufe-->
-            <input type="number" name="alarmstufe_thl" id="thl_stufe" min="0" max="3" placeholder="Alarmstufe">
         </div>
         <br>
         <textarea name="Freitext" id="Freitext" cols="30" rows="10" placeholder="Freitext zum Alarm"></textarea>
@@ -94,6 +81,7 @@
         <button id="alarm_in_btn">Alarmieren</button>
     </div>
     <script src="./user.js"></script>
+    <script src="./JQuery.js"></script>
 </body>
 
 </html>

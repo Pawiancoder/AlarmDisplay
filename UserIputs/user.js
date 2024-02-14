@@ -26,14 +26,10 @@ const street = document.getElementById("street");
 
 const soundRequired = document.getElementById("alarm_sound");
 
-const alarmStufeBrand = document.getElementById("brand_stufe");
-const alarmStufeThl = document.getElementById("thl_stufe");
-
-
 const checkboxes_veh = [rei19_1, rei19_2, rei44, rei46, rei174];
 const checkboxes_alarmTypes = [brandalarm, thl];
 const inputCheckboxes = [rei19_1, rei19_2, rei44, rei46, rei174, brandalarm, thl, resetCheckbox];
-const inputTextFields = [city, houseNumber, street, freitext, alarmStufeBrand, alarmStufeThl];
+const inputTextFields = [city, houseNumber, street, freitext];
 
 //Eventlistener
 
@@ -120,7 +116,6 @@ async function getJsonData() {
                                 street: street.value + " " + hausnummer,
                                 city: city.value,
                                 freitext: freitext.value,
-                                alarmLevel: alarmStufeBrand.value
                             }
                         } else {
                             jsonData = {
@@ -133,7 +128,6 @@ async function getJsonData() {
                                 street: street.value + " " + hausnummer,
                                 city: city.value,
                                 freitext: freitext.value,
-                                alarmLevel: alarmStufeThl.value
                             }
                         }
                     } else {
@@ -148,7 +142,6 @@ async function getJsonData() {
                                 status: false,
                                 street: street.value + " " + hausnummer,
                                 city: city.value,
-                                alarmLevel: alarmStufeBrand.value
                             }
 
                         } else {
@@ -162,7 +155,6 @@ async function getJsonData() {
                                 status: false,
                                 street: street.value + " " + hausnummer,
                                 city: city.value,
-                                alarmLevel: alarmStufeThl.value
                             }
                         }
                     }

@@ -21,3 +21,7 @@ body .ui-autocomplete li :hover {
 body {
     background-color: gray;
 }
+
+.ui-helper-hidden-accessible div {
+    visibility: hidden;
+}
