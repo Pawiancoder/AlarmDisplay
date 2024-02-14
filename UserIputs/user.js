@@ -30,6 +30,7 @@ const soundRequired = document.getElementById("alarm_sound");
 const checkboxes_veh = [rei19_1, rei19_2, rei44, rei46, rei174];
 const checkboxes_alarmTypes = [brandalarm, thl];
 const inputCheckboxes = [rei19_1, rei19_2, rei44, rei46, rei174, brandalarm, thl, resetCheckbox];
+const inputTextFields = [city, houseNumber, street, freitext];
 
 //Eventlistener
 
@@ -63,6 +64,7 @@ async function getJsonData() {
         }
         sendPostRequest(jsonData);
         alert("Der Alarm wurde beendet und die Monitore werden zurückgesetzt!");
+        resetFields();
         return;
     } else {
         if (checkedVehicles.length == 0) {
@@ -160,6 +162,7 @@ async function getJsonData() {
             }
         }
     }
+    alert("Der Alarm wurde ausgelößt!");
     checkDisplayState(jsonData);
     resetFields();
 }
@@ -226,7 +229,6 @@ async function checkDisplayState(jsonData) {
                 alert("Auf dem Monitor ist noch ein Alarm aktiv! Bitte setze diesen zuerst zurück und versuche es dann erneut!");
                 return;
             } else if (data2.error == "Error_no_data") {
-                alert("Der Alarm wurde ausgelößt und wird an die Monitore geschickt!");
                 sendPostRequest(jsonData);
             }
         })
@@ -239,6 +241,9 @@ async function checkDisplayState(jsonData) {
 function resetFields() {
     inputCheckboxes.forEach(checkBox => {
         if (checkBox.checked) checkBox.checked = false
-    })
+    });
+    inputTextFields.forEach(textField => {
+        textField.value = "";
+    });
     keyWordField.value = "";
 }
