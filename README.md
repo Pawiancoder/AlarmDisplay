@@ -1,6 +1,6 @@
 Alarmierungsfenster: http://rasp-maksy/ oder die ip-adresse (welche sich mit der Zeit ändern kann (DHCP Server im Router), was der Hostname nicht macht)
 
-Alarmdisplay: dme.html aus der zip-datei in den Brower
+Alarmdisplay: alarmDisplay.html aus der zip-datei in den Brower (Wichtig: Vorher ZIP-Ordner entpacken!!!! Sonst geht es nicht!)
 
 Api anschalten:
     - Per ssh auf PI einwählen
@@ -16,7 +16,7 @@ Alarme können gestarten & zurückgesetzt werden
 
 Vorraussetzungen:
     - Anbindung an einen PC
-    - Selbes Netzwerk (Lan / WLan) wie der PI (Server)
+    - Selbes Netzwerk (Lan / Wlan) wie der PI (Server)
 
 Unterstützte / getestete Browser:
 - Firefox
