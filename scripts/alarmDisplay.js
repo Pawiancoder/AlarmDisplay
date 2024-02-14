@@ -29,8 +29,9 @@ let alarmTItle = "";
 //Programmstart
 
 function triggerAlarm(title, vehicles, kategorie, sound, type, street, city, freitext) {
-    console.log("TITLE: ", title); console.log("CARS: ", vehicles); console.log("KAT: ", kategorie); console.log("SOUND: ", sound);
-    console.log("TYPE: ", type); console.log("STREET: ", street); console.log("CITY: ", city); console.log("FREITEXT: ", freitext);
+    document.title = title;
+    //console.log("TITLE: ", title); console.log("CARS: ", vehicles); console.log("KAT: ", kategorie); console.log("SOUND: ", sound);
+    //console.log("TYPE: ", type); console.log("STREET: ", street); console.log("CITY: ", city); console.log("FREITEXT: ", freitext);
     alarmTItle = title;
     console.log("Cars: " + vehicles);
 

@@ -17,3 +17,7 @@ Alarme können gestarten & zurückgesetzt werden
 Vorraussetzungen:
     - Anbindung an einen PC
     - Selbes Netzwerk (Lan / WLan) wie der PI (Server)
+
+Unterstützte / getestete Browser:
+- Firefox
+- Chrome    
